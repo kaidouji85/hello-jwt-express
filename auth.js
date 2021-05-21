@@ -1,8 +1,8 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
+const {JWT_SECRET_KEY} = require('./jwt-secret-key');
 
-const accessTokenSecret = 'youraccesstokensecret';
 const users = [
   {
     username: 'john',
@@ -27,7 +27,7 @@ app.post('/login', (req, res) => {
   const user = users.find(u => { return u.username === username && u.password === password });
 
   if (user) {
-    const accessToken = jwt.sign({ username: user.username,  role: user.role }, accessTokenSecret);
+    const accessToken = jwt.sign({ username: user.username,  role: user.role }, JWT_SECRET_KEY);
     res.json({accessToken});
   } else {
     res.send('Username or password incorrect');
