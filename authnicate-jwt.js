@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {JWT_SECRET_KEY} = require('./jwt-secret-key');
+const {JWT_ACCESS_TOKEN_SECRET} = require('./access-token-secret');
 
 module.exports.authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -7,7 +7,7 @@ module.exports.authenticateJWT = (req, res, next) => {
   if (authHeader) {
     const token = authHeader.split(' ')[1];
 
-    jwt.verify(token, JWT_SECRET_KEY, (err, user) => {
+    jwt.verify(token, JWT_ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) {
         return res.sendStatus(403);
       }
