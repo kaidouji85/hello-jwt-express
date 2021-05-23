@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node auth.js"
+    "start": "node auth.js",
+    "start:book": "node book.js"
   },
   "author": "",
   "license": "ISC",
